@@ -1,0 +1,21 @@
+char command;
+int fanPin = 9; // Connect fan through relay/transistor to pin 9
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(fanPin, OUTPUT);
+  digitalWrite(fanPin, LOW);
+}
+
+void loop() {
+  if (Serial.available()) {
+    command = Serial.read();
+    
+    if (command == '1') { // You can map '1' to "Turn on"
+      digitalWrite(fanPin, HIGH);
+    } 
+    else if (command == '0') { // '0' to "Turn off"
+      digitalWrite(fanPin, LOW);
+    }
+  }
+}
